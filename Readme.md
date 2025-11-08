@@ -28,7 +28,7 @@
 <!-- 🖼 Promo Image -->
 
 <p align="center">
-  <img src="https://files.catbox.moe/fvw6fs.jpg" width="600" />
+  <img src="https://files.catbox.moe/9g84fb.jpg" width="600" />
 </p>
 
 <!-- 📌 Try the Bot -->
