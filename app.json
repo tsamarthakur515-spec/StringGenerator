@@ -2,7 +2,7 @@
   "name": "SessionBuilderBot",
   "description": "A modern Telegram bot to generate secure Pyrogram & Telethon user/bot session strings with ease.",
   "logo": "https://files.catbox.moe/fvw6fs.jpg",
-  "repository": "https://github.com/CertifiedCoders/STRING-GENRATOR",
+  "repository": "https://github.com/CertifiedCoders/StringGenerator",
   "keywords": [
     "telegram-bot",
     "pyrogram",
