@@ -1,6 +1,6 @@
 {
   "name": "SessionBuilderBot",
-  "description": "A modern Telegram bot to generate secure Pyrogram & Telethon user/bot session strings with ease.",
+  "description": "A Telegram bot to generate secure Pyrogram (v1/v2) and Telethon session strings for users and bots.",
   "logo": "https://files.catbox.moe/fvw6fs.jpg",
   "repository": "https://github.com/CertifiedCoders/StringGenerator",
   "keywords": [
@@ -20,15 +20,15 @@
       "required": true
     },
     "BOT_TOKEN": {
-      "description": "Bot token from @BotFather",
+      "description": "Your bot token from @BotFather",
       "required": true
     },
     "OWNER_ID": {
-      "description": "Your Telegram numeric user ID (admin only)",
+      "description": "Your Telegram numeric user ID (for admin commands)",
       "required": true
     },
     "MONGO_URI": {
-      "description": "MongoDB connection URI (used for user stats, broadcast, etc)",
+      "description": "MongoDB connection URI (optional; enables stats/broadcast).",
       "required": false
     }
   },

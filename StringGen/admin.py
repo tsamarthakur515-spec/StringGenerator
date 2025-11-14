@@ -1,3 +1,4 @@
+# Authored By Certified Coders — v1.2 (2025-11-14)
 import tempfile
 from datetime import timedelta, timezone
 from pyrogram import Client, filters

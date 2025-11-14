@@ -1,3 +1,4 @@
+# Authored By Certified Coders — v1.2 (2025-11-14)
 import logging
 import time
 from pyrogram import Client, idle
@@ -11,25 +12,31 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("pymongo").setLevel(logging.ERROR)
 
-StartTime = time.time()
-
 def main():
     print("🔧 ꜱᴛᴀʀᴛɪɴɢ ᴊᴀʀᴠɪꜱ ꜱᴇꜱꜱɪᴏɴ ɢᴇɴ...")
 
-    app = Client(
-        name="String-Bot",
-        api_id=config.API_ID,
-        api_hash=config.API_HASH,
-        bot_token=config.BOT_TOKEN,
-        in_memory=True,
-        plugins=dict(root="StringGen"),
-    )
+    if not all([config.API_ID, config.API_HASH, config.BOT_TOKEN]):
+        logging.critical("❌ ᴍɪꜱꜱɪɴɢ ᴀᴘɪ_ɪᴅ/ᴀᴘɪ_ʜᴀꜱʜ/ʙᴏᴛ_ᴛᴏᴋᴇɴ ɪɴ ᴄᴏɴꜰɪɢ.")
+        return
 
     try:
-        app.start()
-        uname = app.get_me().username
-        print(f"✅ ʙᴏᴛ @{uname} ɪꜱ ɴᴏᴡ ʀᴇᴀᴅʏ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ꜱᴇꜱꜱɪᴏɴꜱ.")
-        idle()
+        with Client(
+            name="String-Bot",
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            bot_token=config.BOT_TOKEN,
+            in_memory=True,
+            plugins=dict(root="StringGen"),
+        ) as app:
+
+            try:
+                uname = app.get_me().username
+                print(f"✅ ʙᴏᴛ @{uname} ɪꜱ ɴᴏᴡ ʀᴇᴀᴅʏ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ꜱᴇꜱꜱɪᴏɴꜱ.")
+            except Exception as e:
+                logging.error(f"❗ ꜰᴀɪʟᴇᴅ ᴛᴏ ɢᴇᴛ ʙᴏᴛ ɪɴꜰᴏ: {e}")
+                return
+
+            idle()
 
     except ApiIdInvalid:
         logging.critical("❌ ɪɴᴠᴀʟɪᴅ ᴀᴘɪ_ɪᴅ ᴏʀ ᴀᴘɪ_ʜᴀꜱʜ. ᴘʟᴇᴀꜱᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴄᴏɴꜰɪɢ.")
@@ -40,11 +47,7 @@ def main():
     except Exception as e:
         logging.exception(f"❗ ᴜɴᴇxᴘᴇᴄᴛᴇᴅ ᴇʀʀᴏʀ ᴅᴜʀɪɴɢ ꜱᴛᴀʀᴛᴜᴘ: {e}")
     finally:
-        try:
-            app.stop()
-            print("🛑 ꜱᴇꜱꜱɪᴏɴ ɢᴇɴᴇʀᴀᴛɪᴏɴ ꜱᴛᴏᴘᴘᴇᴅ.")
-        except Exception as e:
-            logging.error(f"ᴇʀʀᴏʀ ᴅᴜʀɪɴɢ ꜱʜᴜᴛᴅᴏᴡɴ: {e}")
+        print("🛑 ꜱᴇꜱꜱɪᴏɴ ɢᴇɴᴇʀᴀᴛɪᴏɴ ꜱᴛᴏᴘᴘᴇᴅ.")
 
 if __name__ == "__main__":
     main()

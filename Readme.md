@@ -84,7 +84,7 @@ If you're the owner (via `OWNER_ID`), you get:
 ### 💻 Local Setup
 
 ```bash
-git clone https://github.com/CertifiedCoders/StringGenerator.git
+git clone https://github.com/CertifiedCoders/StringGenerator
 cd StringGenerator
 cp sample.env .env  # and edit values inside
 

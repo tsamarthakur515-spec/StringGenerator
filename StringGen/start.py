@@ -1,3 +1,4 @@
+# Authored By Certified Coders — v1.2 (2025-11-14)
 import logging
 from typing import Union
 from datetime import datetime
@@ -16,7 +17,10 @@ def command_filter(cmd: Union[str, list]) -> filters.Filter:
 @Client.on_message(command_filter(["start", "help"]))
 async def start_handler(bot: Client, message: Message):
     user = message.from_user
-    await save_user(user)
+    try:
+        await save_user(user)
+    except Exception:
+        pass
 
     try:
         bot_info = await bot.get_me()
