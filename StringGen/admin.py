@@ -10,12 +10,16 @@ IST = timezone(timedelta(hours=5, minutes=30))
 
 @Client.on_message(filters.command("stats") & filters.user(OWNER_ID))
 async def stats_handler(_, message: Message):
+    if users is None:
+        return await message.reply_text("❌ Database not configured (MONGO_URI missing).")
     total = await users.count_documents({})
     await message.reply_text(f"📊 **ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ:** `{total}`")
 
 
 @Client.on_message(filters.command("broadcast") & filters.user(OWNER_ID))
 async def broadcast_handler(bot: Client, message: Message):
+    if users is None:
+        return await message.reply_text("❌ Database not configured (MONGO_URI missing).")
     if len(message.command) < 2:
         return await message.reply("❗ **ᴜꜱᴀɢᴇ:** `/broadcast your message here`")
 
@@ -38,6 +42,8 @@ async def broadcast_handler(bot: Client, message: Message):
 
 @Client.on_message(filters.command("users") & filters.user(OWNER_ID))
 async def users_list(bot: Client, message: Message):
+    if users is None:
+        return await message.reply_text("❌ Database not configured (MONGO_URI missing).")
     lines = []
     count = 0
 
