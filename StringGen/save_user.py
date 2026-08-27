@@ -5,7 +5,7 @@ from StringGen.database import users
 IST = timezone(timedelta(hours=5, minutes=30))
 
 async def save_user(user):
-    if not user:
+    if not user or users is None:
         return
     try:
         await users.update_one(
