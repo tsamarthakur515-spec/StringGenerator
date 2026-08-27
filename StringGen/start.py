@@ -26,12 +26,16 @@ async def start_handler(bot: Client, message: Message):
         bot_info = await bot.get_me()
         bot_name = bot_info.first_name or "This Bot"
 
-        existing = await users.find_one({"_id": user.id})
         join_info = ""
-        if existing and "joined" in existing:
-            join_time = existing["joined"]
-            if isinstance(join_time, datetime):
-                join_info = f"\n🕒 ʏᴏᴜ ᴊᴏɪɴᴇᴅ: **{join_time.strftime('%d-%m-%Y %I:%M %p')} IST**"
+        if users is not None:
+            try:
+                existing = await users.find_one({"_id": user.id})
+                if existing and "joined" in existing:
+                    join_time = existing["joined"]
+                    if isinstance(join_time, datetime):
+                        join_info = f"\n🕒 ʏᴏᴜ ᴊᴏɪɴᴇᴅ: **{join_time.strftime('%d-%m-%Y %I:%M %p')} IST**"
+            except Exception:
+                pass
 
         response_text = (
             f"👋 ʜᴇʏ {user.mention},\n\n"
