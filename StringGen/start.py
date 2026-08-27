@@ -37,8 +37,10 @@ async def start_handler(bot: Client, message: Message):
             except Exception:
                 pass
 
+        name = user.first_name or "User"
+
         response_text = (
-            f"👋 ʜᴇʏ {user.mention},\n\n"
+            f"👋 ʜᴇʏ {name},\n\n"
             f"ɪ ᴀᴍ **{bot_name}** — ᴀ ꜱᴇꜱꜱɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ.\n"
             "ɪ ᴄᴀɴ ʜᴇʟᴘ ʏᴏᴜ ᴄʀᴇᴀᴛᴇ ꜱᴇꜱꜱɪᴏɴꜱ ꜰᴏʀ **ᴘʏʀᴏɢʀᴀᴍ / ᴛᴇʟᴇᴛʜᴏɴ**, ᴜꜱᴇʀ ᴀɴᴅ ʙᴏᴛ ᴀᴄᴄᴏᴜɴᴛꜱ."
             f"{join_info}\n\n"
@@ -62,5 +64,5 @@ async def start_handler(bot: Client, message: Message):
     except Exception as e:
         logger.exception("⚠️ Error in /start or /help handler:")
         await message.reply_text(
-            "⚠️ ᴀɴ ᴜɴᴇxᴘᴇᴄᴛᴇᴅ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ. ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ ʟᴀᴛᴇʀ."
+            f"⚠️ Error: `{str(e)}`\n\nPlease try again later."
         )
